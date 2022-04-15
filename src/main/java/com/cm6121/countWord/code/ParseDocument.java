@@ -4,7 +4,9 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ParseDocument {
 
@@ -32,5 +34,32 @@ public class ParseDocument {
             document.setText(split[1]);
         }
         return document;
+    }
+
+    public HashMap<String, Integer> readNumberWords(String wordToRead, String parameterSplit){
+        HashMap<String, Integer> noOfWords = new HashMap<>();
+        wordToRead = wordToRead.replaceAll("\\p{Punct}", " ").trim();
+        wordToRead = wordToRead.replaceAll("\\s{2}", " ");
+        wordToRead = wordToRead.toLowerCase();
+        String[] words = wordToRead.split(parameterSplit);
+
+        for (String w:words){
+            if(w.length()>2){
+                if(noOfWords.containsKey(w)){
+                    noOfWords.put(w, noOfWords.get(w)+1);
+                }
+                else{
+                    noOfWords.put(w, 1);
+                }
+            }
+        }
+        return noOfWords;
+    }
+
+    public <K,V> void printMap(Map<K,V> map){
+        for(Map.Entry<K,V> entry:map.entrySet()){
+
+            System.out.println("Key: " + entry.getKey()+" ;"+" Value: "+entry.getValue());
+        }
     }
 }

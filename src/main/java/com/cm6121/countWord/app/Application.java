@@ -21,11 +21,11 @@ public class Application {
         System.out.println("Title is "+document.getTitle());
         System.out.println("Text is " + document.getText());
         System.out.println("Normalised date is "+document.getCreationDate());
-//        HashMap<String, Integer> stringIntegerHashMap = pd.readNumberWords(document.getText(), " ");
-//
-//        pd.printMap(stringIntegerHashMap);
-//
-//        CreateFile cf = new CreateFile();
-//        cf.fileCreate();
+        HashMap<String, Integer> stringIntegerHashMap = pd.readNumberWords(document.getText(), " ");
+
+        pd.printMap(stringIntegerHashMap);
+
+        CreateFile cf = new CreateFile();
+        cf.fileCreate();
     }
 }
