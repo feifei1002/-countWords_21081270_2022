@@ -30,8 +30,11 @@ public class ParseDocument {
             String[] split = line.split("\"");
             document = new Document();
             document.setTitle(split[0].substring(0, split[0].length() - 1).trim());
+            document.setText(split[1].trim());
             document.setCreationDate(split[2].substring(1).trim());
-            document.setText(split[1]);
+        }
+        else{
+            System.out.println("Problems with parsing the file");
         }
         return document;
     }

@@ -18,9 +18,8 @@ public class Application {
         ParseDocument pd = new ParseDocument();
         List<String> documentLines = pd.readFile("Desktop", "DocumentsToParse", "ATale.csv");
         Document document = pd.documentParse(documentLines);
-        System.out.println("Title is "+document.getTitle());
-        System.out.println("Text is " + document.getText());
-        System.out.println("Normalised date is "+document.getCreationDate());
+        System.out.println("The title of the file is "+document.getTitle());
+        System.out.println("The normalised date of the file is "+document.getCreationDate());
         HashMap<String, Integer> stringIntegerHashMap = pd.readNumberWords(document.getText(), " ");
 
         pd.printMap(stringIntegerHashMap);
