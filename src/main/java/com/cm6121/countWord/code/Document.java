@@ -4,8 +4,7 @@ public class Document {
 
     private String title;
     private String text;
-    private String creationMonth;
-    private int creationYear;
+    private String creationDate;
 
     protected void setTitle(String title){
         this.title = title;
@@ -15,27 +14,19 @@ public class Document {
         this.text = text;
     }
 
-    protected void setCreationMonth(String creationMonth){
-        this.creationMonth = creationMonth;
+    protected void setCreationDate(String creationDate){
+        this.creationDate = creationDate;
     }
 
-    protected void setCreationYear(int creationYear){
-        this.creationYear = creationYear;
-    }
-
-    protected String getTitle(){
+    public String getTitle(){
         return title;
     }
 
-    protected String getText(){
+    public String getText(){
         return text;
     }
 
-    protected String getCreationMonth(){
-        return creationMonth;
-    }
-
-    protected int getCreationYear(){
-        return creationYear;
+    public String getCreationDate(){
+        return creationDate;
     }
 }

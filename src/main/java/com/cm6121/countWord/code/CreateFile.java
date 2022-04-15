@@ -5,11 +5,11 @@ import java.io.IOException;
 
 public class CreateFile {
 
-    protected void fileCreate() {
+    public void fileCreate() {
 
         try {
             Document document = new Document();
-            File fl = new File("StudentCSVSaved"+"/"+document.getTitle()+".csv");
+            File fl = new File("StudentCSVSaved"+"\\"+document.getTitle()+"_allWords"+".csv");
             if (fl.createNewFile()) {
                 System.out.println("File " + fl.getName()+ " successfully created");
             } else {
@@ -19,10 +19,5 @@ public class CreateFile {
             System.out.println("Error");
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        CreateFile cf = new CreateFile();
-        cf.fileCreate();
     }
 }
