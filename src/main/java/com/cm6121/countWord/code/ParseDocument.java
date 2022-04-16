@@ -42,12 +42,12 @@ public class ParseDocument {
     public HashMap<String, Integer> readNumberWords(String wordToRead, String parameterSplit){
         HashMap<String, Integer> noOfWords = new HashMap<>();
         wordToRead = wordToRead.replaceAll("\\p{Punct}", " ").trim();
-        wordToRead = wordToRead.replaceAll("\\s{2}", " ");
+        wordToRead = wordToRead.replaceAll("\\s{1}", " ");
         wordToRead = wordToRead.toLowerCase();
         String[] words = wordToRead.split(parameterSplit);
 
         for (String w:words){
-            if(w.length()>2){
+            if(w.length()>1){
                 if(noOfWords.containsKey(w)){
                     noOfWords.put(w, noOfWords.get(w)+1);
                 }
