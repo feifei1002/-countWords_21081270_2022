@@ -20,9 +20,9 @@ public class Application {
         String[] listFile = file.list();
         System.out.println("The number of documents in the folder is "+listFile.length);
         for (String name : listFile) {
-            ParseDocument pd = new ParseDocument();
-            List<String> documentLines = pd.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", name);
-            Document document = pd.documentParse(documentLines);
+            ParseDocument parse = new ParseDocument();
+            List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", name);
+            Document document = parse.documentParse(documentLines);
             System.out.println("The file name is " + name+", the title is "+document.getTitle()+", the creation date is "+document.getCreationDate());
         }
 
