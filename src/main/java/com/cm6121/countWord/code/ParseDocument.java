@@ -43,6 +43,7 @@ public class ParseDocument {
         HashMap<String, Integer> noOfWords = new HashMap<>();
         wordToRead = wordToRead.replaceAll("\\p{Punct}", " ").trim();
         wordToRead = wordToRead.replaceAll("\\s{1}", " ");
+        wordToRead = wordToRead.replaceAll("[^a-zA-Z0-9]", " ");
         wordToRead = wordToRead.toLowerCase();
         String[] words = wordToRead.split(parameterSplit);
 
@@ -59,7 +60,7 @@ public class ParseDocument {
         return noOfWords;
     }
 
-    public <K,V> void printMap(Map<K,V> map){
+    public <K,V> void printWords(Map<K,V> map){
         for(Map.Entry<K,V> entry:map.entrySet()){
 
             System.out.println("Key: " + entry.getKey()+" ;"+" Value: "+entry.getValue());

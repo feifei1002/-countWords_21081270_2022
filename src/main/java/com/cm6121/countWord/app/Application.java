@@ -20,17 +20,23 @@ public class Application {
         String[] listFile = file.list();
         System.out.println("The number of documents in the folder is "+listFile.length);
         for (String name : listFile) {
-                System.out.println("The file name is "+name);
-            }
+            ParseDocument pd = new ParseDocument();
+            List<String> documentLines = pd.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", name);
+            Document document = pd.documentParse(documentLines);
+            System.out.println("The file name is " + name+", the title is "+document.getTitle()+", the creation date is "+document.getCreationDate());
+        }
 
-        ParseDocument pd = new ParseDocument();
-        List<String> documentLines = pd.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", "ATale.csv");
-        Document document = pd.documentParse(documentLines);
-        System.out.println("The title of the file is "+document.getTitle());
-        System.out.println("The normalised date of the file is "+document.getCreationDate());
-        HashMap<String, Integer> stringIntegerHashMap = pd.readNumberWords(document.getText(), " ");
+        for(int i = 0; i<listFile.length; i++) {
+            ParseDocument pd = new ParseDocument();
+            List<String> documentLines = pd.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
+            Document document = pd.documentParse(documentLines);
+            //System.out.println need to be removed later
+            System.out.println("The tile of the document is "+document.getTitle());
+            System.out.println("The creation date of the document is "+document.getCreationDate());
+            HashMap<String, Integer> stringIntegerHashMap = pd.readNumberWords(document.getText(), " ");
 
-        pd.printMap(stringIntegerHashMap);
+            pd.printWords(stringIntegerHashMap);
+        }
 
         CreateFile cf = new CreateFile();
         cf.fileCreate();
