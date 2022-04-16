@@ -4,12 +4,13 @@ package com.cm6121.countWord.app;
 import com.cm6121.countWord.code.CreateFile;
 import com.cm6121.countWord.code.Document;
 import com.cm6121.countWord.code.ParseDocument;
+import com.cm6121.countWord.code.WriteDocument;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class Application {
     public static void main (String[] args) throws IOException {
@@ -51,5 +52,10 @@ public class Application {
         for(int i = 0; i<listFile.length; i++) {
             cf.fileCreate(file1+"\\"+(listFile[i].substring(0,listFile[i].length()-4).toUpperCase(Locale.ROOT)+"_allWords.csv"));
         }
+
+        Map<String, Integer> sortedByAscending = new TreeMap<>(wordsOccurrencesHashMap);
+        Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved");
+        File fileWrite = new File(path.toString());
+        WriteDocument.documentWrite(sortedByAscending,document, fileWrite);
     }
 }
