@@ -44,7 +44,7 @@ public class Application {
 
         for(int i = 0; i<listFile.length; i++) {
             CreateFile cf = new CreateFile();
-            cf.fileCreate(listFile[i]+"_allWords.csv");
+            cf.fileCreate(listFile[i].substring(0,listFile[i].length()-4)+"_allWords.csv");
         }
     }
 }
