@@ -18,7 +18,7 @@ public class Application {
         System.out.println(documentToRead);
         System.out.println();
 
-        File file = new File("C:\\Users\\c21081270\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\build\\resources\\main\\FolderDocumentsToRead");
+        File file = new File(System.getProperty("user.home")+"\\"+"\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\build\\resources\\main\\FolderDocumentsToRead");
         String[] listFile = file.list();
         System.out.println("The number of documents in the folder is "+listFile.length);
         System.out.println();
@@ -44,7 +44,8 @@ public class Application {
         }
 
         CreateFile cf = new CreateFile();
-        File file1 = cf.folderCreate("C:\\Users\\c21081270\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\StudentCSVSaved");
+//        File file1 = cf.folderCreate("C:\\Users\\c21081270\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\StudentCSVSaved");
+        File file1 = cf.folderCreate(System.getProperty("user.home")+"\\"+"StudentCSVSaved");
         file1.mkdir();
 
         for(int i = 0; i<listFile.length; i++) {
