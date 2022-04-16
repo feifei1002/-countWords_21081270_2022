@@ -5,11 +5,15 @@ import java.io.IOException;
 
 public class CreateFile {
 
-    public void fileCreate(String filename) {
+    public File folderCreate(String folderName){
+        File file1 = new File(folderName);
+        return file1;
+    }
+
+    public String fileCreate(String fileName) {
 
         try {
-            Document document = new Document();
-            File fl = new File(filename);
+            File fl = new File(fileName);
             if (fl.createNewFile()) {
                 System.out.println("File " + fl.getName()+ " successfully created");
             } else {
@@ -19,5 +23,6 @@ public class CreateFile {
             System.out.println("Error");
             e.printStackTrace();
         }
+        return fileName;
     }
 }

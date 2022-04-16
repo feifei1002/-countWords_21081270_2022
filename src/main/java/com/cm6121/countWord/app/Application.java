@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class Application {
     public static void main (String[] args) throws IOException {
@@ -42,9 +43,12 @@ public class Application {
             parse.printWords(wordsOccurrencesHashMap);
         }
 
+        CreateFile cf = new CreateFile();
+        File file1 = cf.folderCreate("C:\\Users\\c21081270\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\StudentCSVSaved");
+        file1.mkdir();
+
         for(int i = 0; i<listFile.length; i++) {
-            CreateFile cf = new CreateFile();
-            cf.fileCreate(listFile[i].substring(0,listFile[i].length()-4)+"_allWords.csv");
+            cf.fileCreate(file1+"\\"+(listFile[i].substring(0,listFile[i].length()-4).toUpperCase(Locale.ROOT)+"_allWords.csv"));
         }
     }
 }
