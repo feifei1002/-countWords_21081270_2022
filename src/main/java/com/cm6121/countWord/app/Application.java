@@ -37,12 +37,14 @@ public class Application {
             System.out.println();
             System.out.println("The tile of the document is "+document.getTitle());
             System.out.println("The creation date of the document is "+document.getCreationDate());
-            HashMap<String, Integer> stringIntegerHashMap = parse.readNumberWords(document.getText(), " ");
+            HashMap<String, Integer> wordsOccurrencesHashMap = parse.readNumberWords(document.getText(), " ");
 
-            parse.printWords(stringIntegerHashMap);
+            parse.printWords(wordsOccurrencesHashMap);
         }
 
-        CreateFile cf = new CreateFile();
-        cf.fileCreate();
+        for(int i = 0; i<listFile.length; i++) {
+            CreateFile cf = new CreateFile();
+            cf.fileCreate(listFile[i]+"_allWords.csv");
+        }
     }
 }
