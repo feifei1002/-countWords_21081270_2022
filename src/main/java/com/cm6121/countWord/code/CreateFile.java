@@ -6,8 +6,13 @@ import java.io.IOException;
 public class CreateFile {
 
     public File folderCreate(String folderName){
-        File file1 = new File(folderName);
-        return file1;
+        File folder = new File(folderName);
+        if(folder.mkdir()){
+            System.out.println("Folder " + folder.getName()+ " is successfully created");
+        }else{
+            System.out.println("Folder already exists");
+        }
+        return folder;
     }
 
     public String fileCreate(String fileName) {
@@ -15,7 +20,7 @@ public class CreateFile {
         try {
             File fl = new File(fileName);
             if (fl.createNewFile()) {
-                System.out.println("File " + fl.getName()+ " successfully created");
+                System.out.println("File " + fl.getName()+ " is successfully created");
             } else {
                 System.out.println("File already exists");
             }
