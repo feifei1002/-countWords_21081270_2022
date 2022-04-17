@@ -23,6 +23,7 @@ public class Application {
         File file = new File(System.getProperty("user.home")  + "\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\build\\resources\\main\\FolderDocumentsToRead");
         String[] listFile = file.list();
         ParseDocument parse = new ParseDocument();
+
         System.out.println("Do you want to display the names and the number of documents? (Y/N)");
         String answer1 = sc.nextLine();
         if(answer1.equals("Y")) {
@@ -43,20 +44,24 @@ public class Application {
         cf.fileCreate(file1+"\\"+"CSVAllDocuments_allWords.csv");
         System.out.println();
 
-        for (int i = 0; i < listFile.length; i++) {
-            List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
-            Document document = parse.documentParse(documentLines);
-            cf.fileCreate(file1 + "\\" + (document.getTitle() + "_allWords.csv"));
-            //System.out.println need to be removed later
-            System.out.println();
-            System.out.println("The tile of the document is " + document.getTitle());
-            System.out.println("The creation date of the document is " + document.getCreationDate());
-            HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
+        System.out.println("Do you want to display the number of occurrences of the words for each document? (Y/N)");
+        String answer2 = sc.nextLine();
+        if(answer2.equals("Y")) {
+            for (int i = 0; i < listFile.length; i++) {
+                List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
+                Document document = parse.documentParse(documentLines);
+                cf.fileCreate(file1 + "\\" + (document.getTitle() + "_allWords.csv"));
+                //System.out.println need to be removed later
+                System.out.println();
+                System.out.println("The tile of the document is " + document.getTitle());
+                System.out.println("The creation date of the document is " + document.getCreationDate());
+                HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
 
-            parse.printWordsOccurrences(wordsOccurrencesMap);
-            Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", (document.getTitle() + "_allWords.csv"));
-            File fileWrite = new File(path.toString());
-            WriteDocument.documentWrite(document, parse.printWordsOccurrences(wordsOccurrencesMap), fileWrite);
+                parse.printWordsOccurrences(wordsOccurrencesMap);
+                Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", (document.getTitle() + "_allWords.csv"));
+                File fileWrite = new File(path.toString());
+                WriteDocument.documentWrite(document, parse.printWordsOccurrences(wordsOccurrencesMap), fileWrite);
+            }
         }
 
     }
