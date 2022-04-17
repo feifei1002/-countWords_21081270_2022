@@ -19,16 +19,22 @@ public class Application {
         System.out.println(documentToRead);
         System.out.println();
 
+        Scanner sc = new Scanner(System.in);
         File file = new File(System.getProperty("user.home")  + "\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\build\\resources\\main\\FolderDocumentsToRead");
         String[] listFile = file.list();
-        System.out.println("The number of documents in the folder is " + listFile.length);
-        System.out.println();
         ParseDocument parse = new ParseDocument();
+        System.out.println("Do you want to display the names and the number of documents? (Y/N)");
+        String answer1 = sc.nextLine();
+        if(answer1.equals("Y")) {
+            System.out.println("The number of documents in the folder is " + listFile.length);
+            System.out.println();
+//            ParseDocument parse = new ParseDocument();
 
-        for (String name : listFile) {
-            List<String> textLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", name);
-            Document document = parse.documentParse(textLines);
-            System.out.println("The file name is " + name + ", the title is " + document.getTitle() + ", the creation date is " + document.getCreationDate());
+            for (String name : listFile) {
+                List<String> textLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", name);
+                Document document = parse.documentParse(textLines);
+                System.out.println("The file name is " + name + ", the title is " + document.getTitle() + ", the creation date is " + document.getCreationDate());
+            }
         }
         System.out.println();
 
