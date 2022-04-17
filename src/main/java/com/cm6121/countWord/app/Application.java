@@ -26,7 +26,6 @@ public class Application {
         ParseDocument parse = new ParseDocument();
         CreateFile cf = new CreateFile();
         File file1 = cf.folderCreate(System.getProperty("user.home") + "\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\StudentCSVSaved");
-//        file1.mkdir();
 
         for (int i = 0; i < listFile.length; i++) {
             cf.fileCreate(file1 + "\\" + (listFile[i].substring(0, listFile[i].length() - 4).toUpperCase(Locale.ROOT) + "_allWords.csv"));
@@ -50,16 +49,6 @@ public class Application {
             HashMap<String, Integer> wordsOccurrencesHashMap = parse.readNumberWords(document.getText(), " ");
 
             parse.printWords(wordsOccurrencesHashMap);
-//        }
-
-//        CreateFile cf = new CreateFile();
-////        File file1 = cf.folderCreate("C:\\Users\\c21081270\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\StudentCSVSaved");
-//        File file1 = cf.folderCreate(System.getProperty("user.home")+"\\"+"StudentCSVSaved");
-//        file1.mkdir();
-//
-//        for(int i = 0; i<listFile.length; i++) {
-//            cf.fileCreate(file1+"\\"+(listFile[i].substring(0,listFile[i].length()-4).toUpperCase(Locale.ROOT)+"_allWords.csv"));
-//        }
 
             Map<String, Integer> sortedByAscending = new TreeMap<>(wordsOccurrencesHashMap);
             Path path = Paths.get(System.getProperty("user.home"), "Desktop","ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "StudentCSVSaved", (listFile[i].substring(0, listFile[i].length() - 4).toUpperCase(Locale.ROOT) + "_allWords.csv"));
