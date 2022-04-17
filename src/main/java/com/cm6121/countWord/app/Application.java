@@ -50,10 +50,10 @@ public class Application {
 
             parse.printWords(wordsOccurrencesMap);
 
-            Map<String, Integer> sortedByAscending = new TreeMap<>(wordsOccurrencesMap);
+            Map<String, Integer> sortedByAscending = new HashMap(wordsOccurrencesMap);
             Path path = Paths.get(System.getProperty("user.home"), "Desktop","ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "StudentCSVSaved", (listFile[i].substring(0, listFile[i].length() - 4).toUpperCase(Locale.ROOT) + "_allWords.csv"));
             File fileWrite = new File(path.toString());
-            WriteDocument.documentWrite(document, sortedByAscending, fileWrite);
+            WriteDocument.documentWrite(document, parse.printWords(wordsOccurrencesMap), fileWrite);
         }
 
     }

@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Key;
 import java.util.*;
 
 public class ParseDocument {
@@ -58,9 +59,17 @@ public class ParseDocument {
         return noOfWords;
     }
 
-    public <K,V> void printWords(Map<K,V> map){
-        for(Map.Entry<K,V> entry:map.entrySet()){
-            System.out.println("Key: " + entry.getKey()+" ;"+" Value: "+entry.getValue());
+    public static <K,V extends Comparable<? super V>> Map<K,V> printWords(Map<K,V> map){
+        List<Map.Entry<K,V>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+
+        Map<K,V> result = new LinkedHashMap<>();
+        for(Map.Entry<K,V> entry : list){
+            result.put(entry.getKey(), entry.getValue());
         }
+        for(Map.Entry<K,V> entry : list) {
+            System.out.println("Key: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
+        }
+        return result;
     }
 }
