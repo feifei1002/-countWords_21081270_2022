@@ -28,18 +28,13 @@ public class Application {
         for (String name : listFile) {
             List<String> textLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", name);
             Document document = parse.documentParse(textLines);
-//            cf.fileCreate(file1 + "\\" + (document.getTitle() + "_allWords.csv"));
             System.out.println("The file name is " + name + ", the title is " + document.getTitle() + ", the creation date is " + document.getCreationDate());
         }
         System.out.println();
 
         CreateFile cf = new CreateFile();
-//        File file1 = cf.folderCreate(System.getProperty("user.home") + "\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\StudentCSVSaved");
-        File file1 = cf.folderCreate(System.getProperty("user.home") + "\\"+"StudentCSVSaved");
+        File file1 = cf.folderCreate(System.getProperty("user.home") + "\\StudentCSVSaved");
         cf.fileCreate(file1+"\\"+"CSVAllDocuments_allWords.csv");
-//        for (int i = 0; i < listFile.length; i++) {
-//            cf.fileCreate(file1 + "\\" + (listFile[i].substring(0, listFile[i].length() - 4).toUpperCase(Locale.ROOT) + "_allWords.csv"));
-//        }
         System.out.println();
 
         for (int i = 0; i < listFile.length; i++) {
