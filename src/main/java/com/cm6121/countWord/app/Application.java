@@ -24,24 +24,28 @@ public class Application {
         System.out.println("The number of documents in the folder is " + listFile.length);
         System.out.println();
         ParseDocument parse = new ParseDocument();
-        CreateFile cf = new CreateFile();
-        File file1 = cf.folderCreate(System.getProperty("user.home") + "\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\StudentCSVSaved");
-        cf.fileCreate(file1+"\\"+"CSVAllDocuments_allWords.csv");
-        for (int i = 0; i < listFile.length; i++) {
-            cf.fileCreate(file1 + "\\" + (listFile[i].substring(0, listFile[i].length() - 4).toUpperCase(Locale.ROOT) + "_allWords.csv"));
-        }
-        System.out.println();
 
         for (String name : listFile) {
             List<String> textLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", name);
             Document document = parse.documentParse(textLines);
+//            cf.fileCreate(file1 + "\\" + (document.getTitle() + "_allWords.csv"));
             System.out.println("The file name is " + name + ", the title is " + document.getTitle() + ", the creation date is " + document.getCreationDate());
         }
+        System.out.println();
+
+        CreateFile cf = new CreateFile();
+//        File file1 = cf.folderCreate(System.getProperty("user.home") + "\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\StudentCSVSaved");
+        File file1 = cf.folderCreate(System.getProperty("user.home") + "\\"+"StudentCSVSaved");
+        cf.fileCreate(file1+"\\"+"CSVAllDocuments_allWords.csv");
+//        for (int i = 0; i < listFile.length; i++) {
+//            cf.fileCreate(file1 + "\\" + (listFile[i].substring(0, listFile[i].length() - 4).toUpperCase(Locale.ROOT) + "_allWords.csv"));
+//        }
         System.out.println();
 
         for (int i = 0; i < listFile.length; i++) {
             List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
             Document document = parse.documentParse(documentLines);
+            cf.fileCreate(file1 + "\\" + (document.getTitle() + "_allWords.csv"));
             //System.out.println need to be removed later
             System.out.println();
             System.out.println("The tile of the document is " + document.getTitle());
@@ -49,9 +53,7 @@ public class Application {
             HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
 
             parse.printWords(wordsOccurrencesMap);
-
-            Map<String, Integer> sortedByAscending = new HashMap(wordsOccurrencesMap);
-            Path path = Paths.get(System.getProperty("user.home"), "Desktop","ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "StudentCSVSaved", (listFile[i].substring(0, listFile[i].length() - 4).toUpperCase(Locale.ROOT) + "_allWords.csv"));
+            Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", (document.getTitle() + "_allWords.csv"));
             File fileWrite = new File(path.toString());
             WriteDocument.documentWrite(document, parse.printWords(wordsOccurrencesMap), fileWrite);
         }

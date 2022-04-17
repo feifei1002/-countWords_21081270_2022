@@ -7,6 +7,7 @@ public class CreateFile {
 
     public File folderCreate(String folderName){
         File folder = new File(folderName);
+        folder.mkdir();
         if(folder.mkdir()){
             System.out.println("Folder " + folder.getName()+ " is successfully created");
         }else{
