@@ -4,10 +4,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ParseDocument {
 
@@ -40,8 +37,8 @@ public class ParseDocument {
         return document;
     }
 
-    public TreeMap<String, Integer> readNumberWords(String wordToRead, String parameterSplit){
-        TreeMap<String, Integer> noOfWords = new TreeMap<>();
+    public HashMap<String, Integer> readNumberWords(String wordToRead, String parameterSplit){
+        HashMap<String, Integer> noOfWords = new HashMap<>();
         wordToRead = wordToRead.replaceAll("\\p{Punct}", " ").trim();
         wordToRead = wordToRead.replaceAll("\\s{1}", " ");
         wordToRead = wordToRead.replaceAll("[^a-zA-Z]", " ");
@@ -63,7 +60,6 @@ public class ParseDocument {
 
     public <K,V> void printWords(Map<K,V> map){
         for(Map.Entry<K,V> entry:map.entrySet()){
-
             System.out.println("Key: " + entry.getKey()+" ;"+" Value: "+entry.getValue());
         }
     }

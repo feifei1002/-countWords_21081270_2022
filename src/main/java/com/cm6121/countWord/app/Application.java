@@ -46,7 +46,7 @@ public class Application {
             System.out.println();
             System.out.println("The tile of the document is " + document.getTitle());
             System.out.println("The creation date of the document is " + document.getCreationDate());
-            TreeMap<String, Integer> wordsOccurrencesHashMap = parse.readNumberWords(document.getText(), " ");
+            HashMap<String, Integer> wordsOccurrencesHashMap = parse.readNumberWords(document.getText(), " ");
 
             parse.printWords(wordsOccurrencesHashMap);
 
