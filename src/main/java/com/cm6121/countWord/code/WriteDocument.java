@@ -11,12 +11,14 @@ public class WriteDocument {
             OutputStreamWriter outputFileWriter = new OutputStreamWriter(outputFile, "UTF-16");
             BufferedWriter bw = new BufferedWriter(outputFileWriter);
             bw.write(document.getTitle());
+            bw.newLine();
             bw.write(document.getCreationDate());
+            bw.newLine();
 
             for(Map.Entry<String, Integer> words: writeWords.entrySet()){
                 bw.write(words.getKey());
-                bw.write(";");
                 bw.write(words.getValue().toString());
+                bw.newLine();
             }
             bw.close();
         }catch (IOException e){

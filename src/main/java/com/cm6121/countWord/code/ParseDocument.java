@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class ParseDocument {
 
@@ -39,11 +40,11 @@ public class ParseDocument {
         return document;
     }
 
-    public HashMap<String, Integer> readNumberWords(String wordToRead, String parameterSplit){
-        HashMap<String, Integer> noOfWords = new HashMap<>();
+    public TreeMap<String, Integer> readNumberWords(String wordToRead, String parameterSplit){
+        TreeMap<String, Integer> noOfWords = new TreeMap<>();
         wordToRead = wordToRead.replaceAll("\\p{Punct}", " ").trim();
         wordToRead = wordToRead.replaceAll("\\s{1}", " ");
-        wordToRead = wordToRead.replaceAll("[^a-zA-Z0-9]", " ");
+        wordToRead = wordToRead.replaceAll("[^a-zA-Z]", " ");
         wordToRead = wordToRead.toLowerCase();
         String[] words = wordToRead.split(parameterSplit);
 
