@@ -4,10 +4,10 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.Key;
 import java.util.*;
 
 public class ParseDocument {
+
 
     public List<String> readFile(String... pathDocument) throws IOException {
         StringBuffer sb = new StringBuffer();
@@ -71,5 +71,33 @@ public class ParseDocument {
             System.out.println("Key: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
         }
         return ascendingSort;
+    }
+
+    public HashMap<String, Integer> readCorpus(Map<String, Integer> documentHashMap){
+        HashMap<String, Integer> corpusHashMap = new HashMap<>();
+        for(String word : documentHashMap.keySet()) {
+            if (!corpusHashMap.containsKey(word)) {
+                corpusHashMap.put(word,documentHashMap.get(word));
+            }
+            else{
+                corpusHashMap.put(word,corpusHashMap.get(word).intValue()+documentHashMap.get(word).intValue());
+            }
+        }
+        return corpusHashMap;
+
+    }
+
+    public static <String,Integer extends Comparable<? super Integer>> Map<String,Integer> printAllWordsOccurrences(Map<String,Integer> allWordsMap){
+        List<Map.Entry<String,Integer>> listAllWords = new ArrayList<>(allWordsMap.entrySet());
+        listAllWords.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+
+        Map<String,Integer> descendingSort = new LinkedHashMap<>();
+        for(Map.Entry<String,Integer> entry : listAllWords){
+            descendingSort.put(entry.getKey(), entry.getValue());
+        }
+        for(Map.Entry<String,Integer> entry : listAllWords) {
+            System.out.println("Key: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
+        }
+        return descendingSort;
     }
 }

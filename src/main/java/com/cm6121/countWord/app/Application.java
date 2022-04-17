@@ -29,7 +29,6 @@ public class Application {
         if(answer1.equals("Y")) {
             System.out.println("The number of documents in the folder is " + listFile.length);
             System.out.println();
-//            ParseDocument parse = new ParseDocument();
 
             for (String name : listFile) {
                 List<String> textLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", name);
@@ -57,10 +56,16 @@ public class Application {
                 System.out.println("The creation date of the document is " + document.getCreationDate());
                 HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
 
-                parse.printWordsOccurrences(wordsOccurrencesMap);
+                Map<String,Integer> ascendingOrder = parse.printWordsOccurrences(wordsOccurrencesMap);
                 Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", (document.getTitle() + "_allWords.csv"));
                 File fileWrite = new File(path.toString());
-                WriteDocument.documentWrite(document, parse.printWordsOccurrences(wordsOccurrencesMap), fileWrite);
+                WriteDocument.documentWrite(document, ascendingOrder, fileWrite);
+
+                HashMap<String,Integer> allWordsOccurrencesMap = parse.readCorpus(ascendingOrder);
+                Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(allWordsOccurrencesMap);
+                Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
+                File fileWriteAll = new File(pathAll.toString());
+                WriteDocument.documentWrite(document, descendingOrder, fileWriteAll);
             }
         }
 
