@@ -41,7 +41,7 @@ public class ParseDocument {
         HashMap<String, Integer> noOfWords = new HashMap<>();
         wordToRead = wordToRead.replaceAll("\\p{Punct}", " ").trim();
         wordToRead = wordToRead.replaceAll("\\s{1}", " ");
-        wordToRead = wordToRead.replaceAll("[^a-zA-Z]", " ");
+        wordToRead = wordToRead.replaceAll("[^a-zA-Z]", " ").trim();
         wordToRead = wordToRead.toLowerCase();
         String[] words = wordToRead.split(parameterSplit);
 
