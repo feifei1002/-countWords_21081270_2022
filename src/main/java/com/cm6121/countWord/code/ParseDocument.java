@@ -59,17 +59,17 @@ public class ParseDocument {
         return noOfWords;
     }
 
-    public static <K,V extends Comparable<? super V>> Map<K,V> printWords(Map<K,V> map){
-        List<Map.Entry<K,V>> list = new ArrayList<>(map.entrySet());
-        list.sort(Map.Entry.comparingByValue());
+    public static <K,V extends Comparable<? super V>> Map<K,V> printWordsOccurrences(Map<K,V> wordsMap){
+        List<Map.Entry<K,V>> listWords = new ArrayList<>(wordsMap.entrySet());
+        listWords.sort(Map.Entry.comparingByValue());
 
-        Map<K,V> result = new LinkedHashMap<>();
-        for(Map.Entry<K,V> entry : list){
-            result.put(entry.getKey(), entry.getValue());
+        Map<K,V> ascendingSort = new LinkedHashMap<>();
+        for(Map.Entry<K,V> entry : listWords){
+            ascendingSort.put(entry.getKey(), entry.getValue());
         }
-        for(Map.Entry<K,V> entry : list) {
+        for(Map.Entry<K,V> entry : listWords) {
             System.out.println("Key: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
         }
-        return result;
+        return ascendingSort;
     }
 }

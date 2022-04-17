@@ -47,10 +47,10 @@ public class Application {
             System.out.println("The creation date of the document is " + document.getCreationDate());
             HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
 
-            parse.printWords(wordsOccurrencesMap);
+            parse.printWordsOccurrences(wordsOccurrencesMap);
             Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", (document.getTitle() + "_allWords.csv"));
             File fileWrite = new File(path.toString());
-            WriteDocument.documentWrite(document, parse.printWords(wordsOccurrencesMap), fileWrite);
+            WriteDocument.documentWrite(document, parse.printWordsOccurrences(wordsOccurrencesMap), fileWrite);
         }
 
     }
