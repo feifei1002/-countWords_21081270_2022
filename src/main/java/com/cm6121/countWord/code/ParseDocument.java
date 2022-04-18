@@ -77,10 +77,10 @@ public class ParseDocument {
         HashMap<String, Integer> corpusHashMap = new HashMap<>();
         for(String word : documentHashMap.keySet()) {
             if (!corpusHashMap.containsKey(word)) {
-                corpusHashMap.put(word,documentHashMap.get(word));
+                corpusHashMap.put(word, documentHashMap.get(word));
             }
             else{
-                corpusHashMap.put(word,corpusHashMap.get(word).intValue()+documentHashMap.get(word).intValue());
+                corpusHashMap.put(word,corpusHashMap.get(word)+documentHashMap.get(word));
             }
         }
         return corpusHashMap;

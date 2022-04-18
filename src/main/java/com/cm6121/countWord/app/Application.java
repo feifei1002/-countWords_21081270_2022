@@ -1,10 +1,7 @@
 package com.cm6121.countWord.app;
 
 
-import com.cm6121.countWord.code.CreateFile;
-import com.cm6121.countWord.code.Document;
-import com.cm6121.countWord.code.ParseDocument;
-import com.cm6121.countWord.code.WriteDocument;
+import com.cm6121.countWord.code.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,16 +53,29 @@ public class Application {
                 System.out.println("The creation date of the document is " + document.getCreationDate());
                 HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
 
-                Map<String,Integer> ascendingOrder = parse.printWordsOccurrences(wordsOccurrencesMap);
+                Map<String, Integer> ascendingOrder = parse.printWordsOccurrences(wordsOccurrencesMap);
                 Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", (document.getTitle() + "_allWords.csv"));
                 File fileWrite = new File(path.toString());
                 WriteDocument.documentWrite(document, ascendingOrder, fileWrite);
 
-                HashMap<String,Integer> allWordsOccurrencesMap = parse.readCorpus(ascendingOrder);
-                Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(allWordsOccurrencesMap);
-                Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
-                File fileWriteAll = new File(pathAll.toString());
-                WriteDocument.documentWrite(document, descendingOrder, fileWriteAll);
+                System.out.println("Do you want to enter a word and display the number of occurrences of it in " +document.getTitle()+" document? (Y/N)");
+                String answer3 = sc.nextLine();
+                if(answer3.equals("Y")){
+                    System.out.println("What is the word you would like to search?");
+                    String wordSearch = sc.nextLine();
+                    if(wordsOccurrencesMap.containsKey(wordSearch)){
+                        System.out.println("The number of times word  "+wordSearch +"  appears in "+document.getTitle() +" is " +wordsOccurrencesMap.get(wordSearch));
+                    }
+                    else{
+                        System.out.println("Sorry the word is not in any of the documents.");
+                    }
+                }
+
+//                HashMap<String,Integer> allWordsOccurrencesMap = parse.readCorpus(ascendingOrder);
+//                Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(allWordsOccurrencesMap);
+//                Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
+//                File fileWriteAll = new File(pathAll.toString());
+//                WriteDocument.documentWrite(document, descendingOrder, fileWriteAll);
             }
         }
 
