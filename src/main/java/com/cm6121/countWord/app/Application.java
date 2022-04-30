@@ -30,6 +30,7 @@ public class Application {
             List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
             Document document = parse.documentParse(documentLines);
             cf.fileCreate(file1 + "\\" + (document.getTitle() + "_allWords.csv"));
+            System.out.println();
         }
         System.out.println();
 
@@ -62,26 +63,19 @@ public class Application {
                 Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", (document.getTitle() + "_allWords.csv"));
                 File fileWrite = new File(path.toString());
                 WriteDocument.documentWrite(document, ascendingOrder, fileWrite);
-
-//                System.out.println("Do you want to enter a word and display the number of occurrences of it in " +document.getTitle()+" document? (Y/N)");
-//                String answer3 = sc.nextLine();
-//                if(answer3.equals("Y")){
-//                    System.out.println("What is the word you would like to search?");
-//                    String wordSearch = sc.nextLine();
-//                    if(wordsOccurrencesMap.containsKey(wordSearch)){
-//                        System.out.println("The number of times word  "+wordSearch +"  appears in "+document.getTitle() +" is " +wordsOccurrencesMap.get(wordSearch));
-//                    }
-//                    else{
-//                        System.out.println("Sorry the word is not in any of the documents.");
-//                    }
-//                }
-
-                HashMap<String,Integer> allWordsOccurrencesMap = parse.readCorpus(ascendingOrder);
-                Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(allWordsOccurrencesMap);
-                Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
-                File fileWriteAll = new File(pathAll.toString());
-                WriteDocument.documentWrite(document, descendingOrder, fileWriteAll);
             }
+        }
+
+        for (int i = 0; i< listFile.length; i++) {
+            List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
+            Document document = parse.documentParse(documentLines);
+            HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
+//            Map<String,Integer> allWordsOccurrencesMap = parse.readCorpus(wordsOccurrencesMap);
+
+            Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(wordsOccurrencesMap);
+            Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
+            File fileWriteAll = new File(pathAll.toString());
+            WriteDocument.documentWriteAll(document, descendingOrder, fileWriteAll);
         }
 
     }
