@@ -29,7 +29,7 @@ public class Application {
         for (int i = 0; i < listFile.length; i++) {
             List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
             Document document = parse.documentParse(documentLines);
-            cf.fileCreate(file1 + "\\" + (document.getTitle() + "_allWords.csv"));
+            cf.fileCreate(file1 + "\\" + (document.getTitle().replaceAll(" ", "_") + "_allWords.csv"));
             System.out.println();
         }
         System.out.println();
@@ -60,7 +60,7 @@ public class Application {
                 HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
 
                 Map<String, Integer> ascendingOrder = parse.printWordsOccurrences(wordsOccurrencesMap);
-                Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", (document.getTitle() + "_allWords.csv"));
+                Path path = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", (document.getTitle().replaceAll(" ", "_") + "_allWords.csv"));
                 File fileWrite = new File(path.toString());
                 WriteDocument.documentWrite(document, ascendingOrder, fileWrite);
             }
