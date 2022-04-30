@@ -74,17 +74,25 @@ public class ParseDocument {
     }
 
 
-    public static <String,Integer extends Comparable<? super Integer>> Map<String,Integer> printAllWordsOccurrences(Map<String,Integer> allWordsMap){
+    public static <String,Integer extends Comparable<? super Integer>> Map<String,Integer> allWordsOccurrences(Map<String,Integer> allWordsMap){
         List<Map.Entry<String,Integer>> listAllWords = new ArrayList<>(allWordsMap.entrySet());
         listAllWords.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
-
         Map<String,Integer> descendingSort = new LinkedHashMap<>();
         for(Map.Entry<String,Integer> entry : listAllWords){
             descendingSort.put(entry.getKey(), entry.getValue());
         }
-        for(Map.Entry<String,Integer> entry : listAllWords) {
-            System.out.println("Key: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
-        }
         return descendingSort;
+    }
+
+    public <K,V> void printFirst20Words(Map<K, V> first20Words){
+        int count = 0;
+        for(Map.Entry<K,V> entry : first20Words.entrySet()) {
+            count++;
+            System.out.println("Key: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
+            if(count == 20){
+                break;
+            }
+        }
+
     }
 }

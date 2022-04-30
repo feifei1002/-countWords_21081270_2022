@@ -81,7 +81,8 @@ public class Application {
                 }
             }
             HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(allText, " ");
-            Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(wordsOccurrencesMap);
+            Map<String, Integer> descendingOrder = parse.allWordsOccurrences(wordsOccurrencesMap);
+            parse.printFirst20Words(descendingOrder);
             Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
             File fileWriteAll = new File(pathAll.toString());
             WriteDocument.documentWriteAll(allText, descendingOrder, fileWriteAll);
