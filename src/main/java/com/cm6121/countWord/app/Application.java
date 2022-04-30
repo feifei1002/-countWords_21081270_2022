@@ -45,6 +45,9 @@ public class Application {
                 Document document = parse.documentParse(textLines);
                 System.out.println("The file name is " + name + ", the title is " + document.getTitle() + ", the creation date is " + document.getCreationDate());
             }
+        }else if(!answer1.equals("N")){
+            System.out.println("invalid input");
+            System.exit(0);
         }
         System.out.println();
 
@@ -57,6 +60,8 @@ public class Application {
                 System.out.println();
                 System.out.println("The tile of the document is " + document.getTitle());
                 System.out.println("The creation date of the document is " + document.getCreationDate());
+                System.out.println("Here are the occurrences of words in the document " + document.getTitle());
+                System.out.println();
                 HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
 
                 Map<String, Integer> ascendingOrder = parse.printWordsOccurrences(wordsOccurrencesMap);
@@ -64,6 +69,9 @@ public class Application {
                 File fileWrite = new File(path.toString());
                 WriteDocument.documentWrite(document, ascendingOrder, fileWrite);
             }
+        }else if(!answer2.equals("N")){
+            System.out.println("invalid input");
+            System.exit(0);
         }
 
 
@@ -94,15 +102,19 @@ public class Application {
                 Document document = parse.documentParse(documentLines);
                 HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
                 if (wordsOccurrencesMap.containsKey(wordSearch)) {
-                    System.out.println("The number of times word  " + wordSearch + " appears in " + document.getTitle() + " is " + wordsOccurrencesMap.get(wordSearch));
+                    System.out.println("The number of times the word '" + wordSearch + "' appears in the document " + document.getTitle() + " is " + wordsOccurrencesMap.get(wordSearch));
                     total = total + wordsOccurrencesMap.get(wordSearch);
 
-                }else {
-                    System.out.println("Sorry the word is not in any of the documents.");
+                }else if(!wordsOccurrencesMap.containsKey(wordSearch)){
+                    System.out.println("Sorry the word '"+ wordSearch + "' is not in the document " + document.getTitle());
                 }
             }
-            System.out.println("The number of times word  " + wordSearch + " appears in the whole corpus is " +total);
+            System.out.println("The number of times the word '" + wordSearch + "' appears in the whole corpus is " +total);
+        }else if(!answer3.equals("N")){
+            System.out.println("invalid input");
+            System.exit(0);
         }
+        System.out.println();
 
         System.out.println("Do you want to display the number of occurrences of the 20 words that have the most occurrences in the whole corpus? (Y/N");
         String answer4 = sc.nextLine();
@@ -114,6 +126,9 @@ public class Application {
             Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
             File fileWriteAll = new File(pathAll.toString());
             WriteDocument.documentWriteAll(corpusText, descendingOrder, fileWriteAll);
+        }else if(!answer4.equals("N")){
+            System.out.println("invalid input");
+            System.exit(0);
         }
     }
 }
