@@ -66,29 +66,50 @@ public class Application {
             }
         }
 
-        String allText = null;
-        String allTextFinalList[];
+
+        String corpusText = null;
+        String corpusTextFinalList[];
         for (int i = 0; i< listFile.length; i++) {
             List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
             for (String text : documentLines) {
-                String allTextBeforeList[];
-                allTextBeforeList = text.split(",");
-                allTextBeforeList[0] = " ".trim();
-                allTextBeforeList[allTextBeforeList.length - 1] = " ".trim();
-                allTextFinalList = allTextBeforeList;
-                for (int j = 0; j < allTextFinalList.length; j++) {
-                    allText = allText + allTextFinalList[j];
+                String corpusTextBeforeList[];
+                corpusTextBeforeList = text.split(",");
+                corpusTextBeforeList[0] = " ".trim();
+                corpusTextBeforeList[corpusTextBeforeList.length - 1] = " ".trim();
+                corpusTextFinalList = corpusTextBeforeList;
+                for (int j = 0; j < corpusTextFinalList.length; j++) {
+                    corpusText = corpusText + corpusTextFinalList[j];
                 }
             }
         }
-        System.out.println("Here are the 20 words that have the most occurrences in the whole corpus:");
-        HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(allText, " ");
+
+        System.out.println("Do you want to enter a word and display the number of occurrences of it in each document? (Y/N)");
+        String answer3 = sc.nextLine();
+        if(answer3.equals("Y")) {
+            System.out.println("What is the word you would like to search?");
+            String wordSearch = sc.nextLine();
+            int total = 0;
+            for (int i = 0; i < listFile.length; i++) {
+                List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
+                Document document = parse.documentParse(documentLines);
+                HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
+                if (wordsOccurrencesMap.containsKey(wordSearch)) {
+                    System.out.println("The number of times word  " + wordSearch + " appears in " + document.getTitle() + " is " + wordsOccurrencesMap.get(wordSearch));
+                    total = total + wordsOccurrencesMap.get(wordSearch);
+
+                }else {
+                    System.out.println("Sorry the word is not in any of the documents.");
+                }
+            }
+            System.out.println("The number of times word  " + wordSearch + " appears in the whole corpus is " +total);
+        }
+
+        HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(corpusText, " ");
         Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(wordsOccurrencesMap);
+        System.out.println("Here are the 20 words that have the most occurrences in the whole corpus:");
         parse.printFirst20Words(descendingOrder);
         Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
         File fileWriteAll = new File(pathAll.toString());
-        WriteDocument.documentWriteAll(allText, descendingOrder, fileWriteAll);
+        WriteDocument.documentWriteAll(corpusText, descendingOrder, fileWriteAll);
         }
-
-//    }
 }
