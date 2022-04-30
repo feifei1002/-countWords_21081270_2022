@@ -74,9 +74,10 @@ public class ParseDocument {
     }
 
 
-    public static <String,Integer extends Comparable<? super Integer>> Map<String,Integer> allWordsOccurrences(Map<String,Integer> allWordsMap){
+    public static <String,Integer extends Comparable<? super Integer>> Map<String,Integer> printAllWordsOccurrences(Map<String,Integer> allWordsMap){
         List<Map.Entry<String,Integer>> listAllWords = new ArrayList<>(allWordsMap.entrySet());
         listAllWords.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+
         Map<String,Integer> descendingSort = new LinkedHashMap<>();
         for(Map.Entry<String,Integer> entry : listAllWords){
             descendingSort.put(entry.getKey(), entry.getValue());

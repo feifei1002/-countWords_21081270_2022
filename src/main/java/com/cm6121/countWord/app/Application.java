@@ -70,23 +70,25 @@ public class Application {
         String allTextFinalList[];
         for (int i = 0; i< listFile.length; i++) {
             List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
-            for(String text : documentLines){
+            for (String text : documentLines) {
                 String allTextBeforeList[];
                 allTextBeforeList = text.split(",");
                 allTextBeforeList[0] = " ".trim();
-                allTextBeforeList[allTextBeforeList.length-1] = " ".trim();
+                allTextBeforeList[allTextBeforeList.length - 1] = " ".trim();
                 allTextFinalList = allTextBeforeList;
-                for(int j = 0; j < allTextFinalList.length; j++){
+                for (int j = 0; j < allTextFinalList.length; j++) {
                     allText = allText + allTextFinalList[j];
                 }
             }
-            HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(allText, " ");
-            Map<String, Integer> descendingOrder = parse.allWordsOccurrences(wordsOccurrencesMap);
-            parse.printFirst20Words(descendingOrder);
-            Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
-            File fileWriteAll = new File(pathAll.toString());
-            WriteDocument.documentWriteAll(allText, descendingOrder, fileWriteAll);
+        }
+        System.out.println("Here are the 20 words that have the most occurrences in the whole corpus:");
+        HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(allText, " ");
+        Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(wordsOccurrencesMap);
+        parse.printFirst20Words(descendingOrder);
+        Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
+        File fileWriteAll = new File(pathAll.toString());
+        WriteDocument.documentWriteAll(allText, descendingOrder, fileWriteAll);
         }
 
-    }
+//    }
 }
