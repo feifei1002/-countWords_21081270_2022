@@ -28,9 +28,9 @@ public class WriteDocument {
         }
     }
 
-    public static void documentWriteAll(Document document, Map<String, Integer> writeWords, File file){
+    public static void documentWriteAll(String allText, Map<String, Integer> writeWords, File file){
         try{
-            FileOutputStream outputFile = new FileOutputStream(file, true);
+            FileOutputStream outputFile = new FileOutputStream(file, false);
             OutputStreamWriter outputFileWriterAll = new OutputStreamWriter(outputFile, StandardCharsets.UTF_8);
             BufferedWriter bw = new BufferedWriter(outputFileWriterAll);
             for(Map.Entry<String, Integer> words: writeWords.entrySet()){

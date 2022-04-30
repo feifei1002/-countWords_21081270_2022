@@ -40,7 +40,7 @@ public class ParseDocument {
 
     public HashMap<String, Integer> readNumberWords(String wordToRead, String parameterSplit){
         HashMap<String, Integer> noOfWords = new HashMap<>();
-        wordToRead = wordToRead.replaceAll("\\p{P}", " ").trim();
+        wordToRead = wordToRead.replaceAll("\\p{Punct}", " ").trim();
         wordToRead = wordToRead.replaceAll("\\s{1}", " ");
         wordToRead = wordToRead.replaceAll("[^a-zA-Z]", " ").trim();
         wordToRead = wordToRead.toLowerCase();
@@ -73,32 +73,6 @@ public class ParseDocument {
         return ascendingSort;
     }
 
-//    public Map<String, Integer> readCorpus(HashMap<String, Integer> documentHashMap){
-//        Map<String, Integer> corpusHashMap = new HashMap<>();
-//        for(String word : documentHashMap.keySet()) {
-//            if (!corpusHashMap.containsKey(word)) {
-//                corpusHashMap.putIfAbsent(word, documentHashMap.get(word));
-//            }else{
-//                corpusHashMap.replace(word, corpusHashMap.get(word), corpusHashMap.get(word) + documentHashMap.get(word));
-//            }
-//        }
-//        return corpusHashMap;
-//
-//    }
-
-    public Map<String, Integer> readCorpus(HashMap<String, Integer> documentHashMap){
-        Map<String, Integer> corpusHashMap = new HashMap<>();
-        for(String word : documentHashMap.keySet()) {
-            if (corpusHashMap.containsKey(word)) {
-//                corpusHashMap.replace(word, corpusHashMap.get(word), corpusHashMap.get(word) + documentHashMap.get(word));
-                corpusHashMap.computeIfPresent(word, (k,v) -> v+documentHashMap.get(word));
-            }else{
-                corpusHashMap.putIfAbsent(word, documentHashMap.get(word));
-            }
-        }
-        return corpusHashMap;
-
-    }
 
     public static <String,Integer extends Comparable<? super Integer>> Map<String,Integer> printAllWordsOccurrences(Map<String,Integer> allWordsMap){
         List<Map.Entry<String,Integer>> listAllWords = new ArrayList<>(allWordsMap.entrySet());
