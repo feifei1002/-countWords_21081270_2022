@@ -10,8 +10,9 @@ public class CreateFile {
         if(folder.mkdir()){
             System.out.println("Folder " + folder.getName()+ " is successfully created");
         }else{
-            System.out.println("Folder already exists");
+            System.out.println("Folder " + folder.getName()+ " already exists");
         }
+        System.out.println();
         return folder;
     }
 
@@ -22,7 +23,7 @@ public class CreateFile {
             if (fl.createNewFile()) {
                 System.out.println("File " + fl.getName()+ " is successfully created");
             } else {
-                System.out.println("File already exists");
+                System.out.println("File " + fl.getName()+ " already exists");
             }
         }catch(IOException e){
             System.out.println("Error");

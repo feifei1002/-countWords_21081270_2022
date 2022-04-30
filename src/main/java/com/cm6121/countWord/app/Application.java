@@ -20,11 +20,13 @@ public class Application {
         File file = new File(System.getProperty("user.home")  + "\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\build\\resources\\main\\FolderDocumentsToRead");
         String[] listFile = file.list();
         ParseDocument parse = new ParseDocument();
-
+        System.out.println("Welcome to Count Word Application!");
+        System.out.println();
 
         CreateFile cf = new CreateFile();
         File file1 = cf.folderCreate(System.getProperty("user.home") + "\\StudentCSVSaved");
         cf.fileCreate(file1+"\\"+"CSVAllDocuments_allWords.csv");
+        System.out.println();
 
         for (int i = 0; i < listFile.length; i++) {
             List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
@@ -46,7 +48,7 @@ public class Application {
                 System.out.println("The file name is " + name + ", the title is " + document.getTitle() + ", the creation date is " + document.getCreationDate());
             }
         }else if(!answer1.equals("N")){
-            System.out.println("invalid input");
+            System.out.println("Sorry, invalid input");
             System.exit(0);
         }
         System.out.println();
@@ -70,7 +72,7 @@ public class Application {
                 WriteDocument.documentWrite(document, ascendingOrder, fileWrite);
             }
         }else if(!answer2.equals("N")){
-            System.out.println("invalid input");
+            System.out.println("Sorry, invalid input");
             System.exit(0);
         }
 
@@ -111,7 +113,7 @@ public class Application {
             }
             System.out.println("The number of times the word '" + wordSearch + "' appears in the whole corpus is " +total);
         }else if(!answer3.equals("N")){
-            System.out.println("invalid input");
+            System.out.println("Sorry, invalid input");
             System.exit(0);
         }
         System.out.println();
@@ -127,11 +129,11 @@ public class Application {
             File fileWriteAll = new File(pathAll.toString());
             WriteDocument.documentWriteAll(corpusText, descendingOrder, fileWriteAll);
         }else if(!answer4.equals("N")){
-            System.out.println("invalid input");
+            System.out.println("Sorry, invalid input");
             System.exit(0);
         }
         System.out.println();
-        System.out.println("Thank you for playing Count Word!");
+        System.out.println("Thank you for using Count Word Application!");
         System.exit(0);
     }
 }
