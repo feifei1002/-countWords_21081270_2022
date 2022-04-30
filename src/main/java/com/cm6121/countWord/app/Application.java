@@ -104,12 +104,16 @@ public class Application {
             System.out.println("The number of times word  " + wordSearch + " appears in the whole corpus is " +total);
         }
 
-        HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(corpusText, " ");
-        Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(wordsOccurrencesMap);
-        System.out.println("Here are the 20 words that have the most occurrences in the whole corpus:");
-        parse.printFirst20Words(descendingOrder);
-        Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
-        File fileWriteAll = new File(pathAll.toString());
-        WriteDocument.documentWriteAll(corpusText, descendingOrder, fileWriteAll);
+        System.out.println("Do you want to display the number of occurrences of the 20 words that have the most occurrences in the whole corpus? (Y/N");
+        String answer4 = sc.nextLine();
+        if(answer4.equals("Y")) {
+            HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(corpusText, " ");
+            Map<String, Integer> descendingOrder = parse.printAllWordsOccurrences(wordsOccurrencesMap);
+            System.out.println("Here are the 20 words that have the most occurrences in the whole corpus:");
+            parse.printFirst20Words(descendingOrder);
+            Path pathAll = Paths.get(System.getProperty("user.home"), "StudentCSVSaved", "CSVAllDocuments_allWords.csv");
+            File fileWriteAll = new File(pathAll.toString());
+            WriteDocument.documentWriteAll(corpusText, descendingOrder, fileWriteAll);
         }
+    }
 }
