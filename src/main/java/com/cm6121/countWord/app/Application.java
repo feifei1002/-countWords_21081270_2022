@@ -116,7 +116,7 @@ public class Application {
         }
         System.out.println();
 
-        System.out.println("Do you want to display the number of occurrences of the 20 words that have the most occurrences in the whole corpus? (Y/N");
+        System.out.println("Do you want to display the number of occurrences of the 20 words that have the most occurrences in the whole corpus? (Y/N)");
         String answer4 = sc.nextLine();
         if(answer4.equals("Y")) {
             HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(corpusText, " ");
@@ -130,5 +130,8 @@ public class Application {
             System.out.println("invalid input");
             System.exit(0);
         }
+        System.out.println();
+        System.out.println("Thank you for playing Count Word!");
+        System.exit(0);
     }
 }
