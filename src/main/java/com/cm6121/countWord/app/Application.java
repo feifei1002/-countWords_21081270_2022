@@ -108,7 +108,7 @@ public class Application {
                     total = total + wordsOccurrencesMap.get(wordSearch);
 
                 }else if(!wordsOccurrencesMap.containsKey(wordSearch)){
-                    System.out.println("Sorry the word '"+ wordSearch + "' is not in the document " + document.getTitle());
+                    System.out.println("Sorry, the word '"+ wordSearch + "' is not in the document " + document.getTitle());
                 }
             }
             System.out.println("The number of times the word '" + wordSearch + "' appears in the whole corpus is " +total);
@@ -118,7 +118,7 @@ public class Application {
         }
         System.out.println();
 
-        System.out.println("Do you want to display the number of occurrences of the 20 words that have the most occurrences in the whole corpus? (Y/N)");
+        System.out.println("Do you want to display the 20 words that have the most occurrences in the whole corpus? (Y/N)");
         String answer4 = sc.nextLine();
         if(answer4.equals("Y")) {
             HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(corpusText, " ");

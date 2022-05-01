@@ -68,7 +68,7 @@ public class ParseDocument {
             ascendingSort.put(entry.getKey(), entry.getValue());
         }
         for(Map.Entry<K,V> entry : listWords) {
-            System.out.println("Key: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
+            System.out.println("Word: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
         }
         return ascendingSort;
     }
@@ -89,7 +89,7 @@ public class ParseDocument {
         int count = 0;
         for(Map.Entry<K,V> entry : first20Words.entrySet()) {
             count++;
-            System.out.println("Key: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
+            System.out.println("Word: " + entry.getKey() + " ;" + " Value: " + entry.getValue());
             if(count == 20){
                 break;
             }
