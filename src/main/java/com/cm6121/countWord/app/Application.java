@@ -17,6 +17,7 @@ public class Application {
         System.out.println();
 
         Scanner sc = new Scanner(System.in);
+        // Please change the directory to the path that you want to read the files
         File file = new File(System.getProperty("user.home")  + "\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\build\\resources\\main\\FolderDocumentsToRead");
         String[] listFile = file.list();
         ParseDocument parse = new ParseDocument();
@@ -29,6 +30,7 @@ public class Application {
         System.out.println();
 
         for (int i = 0; i < listFile.length; i++) {
+            // Please change the directory to the path that you want to read the files
             List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
             Document document = parse.documentParse(documentLines);
             cf.fileCreate(file1 + "\\" + (document.getTitle().replaceAll(" ", "_") + "_allWords.csv"));
@@ -42,10 +44,11 @@ public class Application {
             System.out.println("The number of documents in the folder is " + listFile.length);
             System.out.println();
 
-            for (String name : listFile) {
-                List<String> textLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", name);
+            for (String fileName : listFile) {
+                // Please change the directory to the path that you want to read the files
+                List<String> textLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", fileName);
                 Document document = parse.documentParse(textLines);
-                System.out.println("The file name is " + name + ", the title is " + document.getTitle() + ", the creation date is " + document.getCreationDate());
+                System.out.println("The file name is " + fileName + ", the title is " + document.getTitle() + ", the creation date is " + document.getCreationDate());
             }
         }else if(!answer1.equals("N")){
             System.out.println("Sorry, invalid input");
@@ -57,6 +60,7 @@ public class Application {
         String answer2 = sc.nextLine();
         if(answer2.equals("Y")) {
             for (int i = 0; i < listFile.length; i++) {
+                // Please change the directory to the path that you want to read the files
                 List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
                 Document document = parse.documentParse(documentLines);
                 System.out.println();
@@ -80,6 +84,7 @@ public class Application {
         String corpusText = null;
         String corpusTextFinalList[];
         for (int i = 0; i< listFile.length; i++) {
+            // Please change the directory to the path that you want to read the files
             List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
             for (String text : documentLines) {
                 String corpusTextBeforeList[];
@@ -100,6 +105,7 @@ public class Application {
             String wordSearch = sc.nextLine();
             int total = 0;
             for (int i = 0; i < listFile.length; i++) {
+                // Please change the directory to the path that you want to read the files
                 List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
                 Document document = parse.documentParse(documentLines);
                 HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");

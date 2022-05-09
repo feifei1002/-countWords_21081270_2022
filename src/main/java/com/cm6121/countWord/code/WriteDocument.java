@@ -28,15 +28,15 @@ public class WriteDocument {
         }
     }
 
-    public static void documentWriteAll(String allText, Map<String, Integer> writeWords, File file){
+    public static void documentWriteAll(String allText, Map<String, Integer> writeAllWords, File file){
         try{
             FileOutputStream outputFile = new FileOutputStream(file, false);
             OutputStreamWriter outputFileWriterAll = new OutputStreamWriter(outputFile, StandardCharsets.UTF_8);
             BufferedWriter bw = new BufferedWriter(outputFileWriterAll);
-            for(Map.Entry<String, Integer> words: writeWords.entrySet()){
-                bw.write(words.getKey().trim());
+            for(Map.Entry<String, Integer> text: writeAllWords.entrySet()){
+                bw.write(text.getKey().trim());
                 bw.write(",");
-                bw.write(words.getValue().toString());
+                bw.write(text.getValue().toString());
                 bw.newLine();
             }
             bw.close();

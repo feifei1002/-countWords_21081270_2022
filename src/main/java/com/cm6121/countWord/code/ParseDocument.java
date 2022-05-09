@@ -8,7 +8,6 @@ import java.util.*;
 
 public class ParseDocument {
 
-
     public List<String> readFile(String... pathDocument) throws IOException {
         StringBuffer sb = new StringBuffer();
         for(String s:pathDocument){
@@ -74,12 +73,12 @@ public class ParseDocument {
     }
 
 
-    public static <String,Integer extends Comparable<? super Integer>> Map<String,Integer> printAllWordsOccurrences(Map<String,Integer> allWordsMap){
-        List<Map.Entry<String,Integer>> listAllWords = new ArrayList<>(allWordsMap.entrySet());
-        listAllWords.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+    public static <K,V extends Comparable<? super Integer>> Map<K,V> printAllWordsOccurrences(Map<K,V> allWordsMap){
+        List<Map.Entry<K,V>> listAllWords = new ArrayList<>(allWordsMap.entrySet());
+        listAllWords.sort(Map.Entry.comparingByValue((Comparator<? super V>) Comparator.reverseOrder()));
 
-        Map<String,Integer> descendingSort = new LinkedHashMap<>();
-        for(Map.Entry<String,Integer> entry : listAllWords){
+        Map<K,V> descendingSort = new LinkedHashMap<>();
+        for(Map.Entry<K,V> entry : listAllWords){
             descendingSort.put(entry.getKey(), entry.getValue());
         }
         return descendingSort;
