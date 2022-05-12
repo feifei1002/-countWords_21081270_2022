@@ -14,11 +14,11 @@ public class Application {
         String documentToRead = ClassLoader.getSystemClassLoader().getResource("FolderDocumentsToRead").getPath();
         System.out.println("The counting words application");
         System.out.println(documentToRead);
-        System.out.println();
 
+        System.out.println();
         Scanner sc = new Scanner(System.in);
-        // Please change the directory to the path that you want to read the files
-        File file = new File(System.getProperty("user.home")  + "\\Desktop\\ASE Year 1\\Java Assessment 2\\cm6121_assessment_2_start\\build\\resources\\main\\FolderDocumentsToRead");
+        // Please change the directory to the path that you want to read the files if necessary
+        File file = new File(System.getProperty("user.home")  + "\\cm6121_assessment_2_start\\build\\resources\\main\\FolderDocumentsToRead");
         String[] listFile = file.list();
         ParseDocument parse = new ParseDocument();
         System.out.println("Welcome to Count Word Application!");
@@ -30,8 +30,8 @@ public class Application {
         System.out.println();
 
         for (int i = 0; i < listFile.length; i++) {
-            // Please change the directory to the path that you want to read the files
-            List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
+            // Please change the directory to the path that you want to read the files if necessary
+            List<String> documentLines = parse.readFile("cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
             Document document = parse.documentParse(documentLines);
             cf.fileCreate(file1 + "\\" + (document.getTitle().replaceAll(" ", "_") + "_allWords.csv"));
             System.out.println();
@@ -45,8 +45,8 @@ public class Application {
             System.out.println();
 
             for (String fileName : listFile) {
-                // Please change the directory to the path that you want to read the files
-                List<String> textLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", fileName);
+                // Please change the directory to the path that you want to read the files if necessary
+                List<String> textLines = parse.readFile("cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", fileName);
                 Document document = parse.documentParse(textLines);
                 System.out.println("The file name is " + fileName + ", the title is " + document.getTitle() + ", the creation date is " + document.getCreationDate());
             }
@@ -60,8 +60,8 @@ public class Application {
         String answer2 = sc.nextLine();
         if(answer2.equals("Y")) {
             for (int i = 0; i < listFile.length; i++) {
-                // Please change the directory to the path that you want to read the files
-                List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
+                // Please change the directory to the path that you want to read the files if necessary
+                List<String> documentLines = parse.readFile( "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
                 Document document = parse.documentParse(documentLines);
                 System.out.println();
                 System.out.println("The tile of the document is " + document.getTitle());
@@ -85,7 +85,7 @@ public class Application {
         String corpusTextFinalList[];
         for (int i = 0; i< listFile.length; i++) {
             // Please change the directory to the path that you want to read the files
-            List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
+            List<String> documentLines = parse.readFile( "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
             for (String text : documentLines) {
                 String corpusTextBeforeList[];
                 corpusTextBeforeList = text.split(",");
@@ -106,7 +106,7 @@ public class Application {
             int total = 0;
             for (int i = 0; i < listFile.length; i++) {
                 // Please change the directory to the path that you want to read the files
-                List<String> documentLines = parse.readFile("Desktop", "ASE Year 1", "Java Assessment 2", "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
+                List<String> documentLines = parse.readFile( "cm6121_assessment_2_start", "build", "resources", "main", "FolderDocumentsToRead", listFile[i]);
                 Document document = parse.documentParse(documentLines);
                 HashMap<String, Integer> wordsOccurrencesMap = parse.readNumberWords(document.getText(), " ");
                 if (wordsOccurrencesMap.containsKey(wordSearch)) {
